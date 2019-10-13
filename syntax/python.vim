@@ -93,8 +93,11 @@ if s:Python2Syntax()
   syn match   pythonFunction    '[a-zA-Z_][a-zA-Z0-9_]*' display contained
 else
   syn keyword pythonStatement   as nonlocal
-  syn keyword pythonAsync       async await
+  syn match   pythonStatement   '\v\.@<!<await>'
   syn match   pythonFunction    '\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\)\%([^[:cntrl:][:punct:][:space:]]\|_\)*' display contained
+  syn match   pythonStatement   '\<async\s\+def\>' nextgroup=pythonFunction skipwhite
+  syn match   pythonStatement   '\<async\s\+with\>'
+  syn match   pythonStatement   '\<async\s\+for\>'
   syn cluster pythonExpression contains=pythonStatement,pythonRepeat,pythonConditional,pythonOperator,pythonNumber,pythonHexNumber,pythonOctNumber,pythonBinNumber,pythonFloat,pythonString,pythonBytes,pythonBoolean,pythonNone,pythonSingleton,pythonBuiltinObj,pythonBuiltinFunc,pythonBuiltinType,pythonClassVar
 endif
 
@@ -416,7 +419,6 @@ if v:version >= 508 || !exists('did_python_syn_inits')
 
   HiLink pythonStatement        Statement
   HiLink pythonRaiseFromStatement   Statement
-  HiLink pythonAsync            Statement
   HiLink pythonImport           Include
   HiLink pythonFunction         Function
   HiLink pythonClassName        Structure
