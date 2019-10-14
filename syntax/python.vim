@@ -98,6 +98,7 @@ else
   syn match   pythonStatement   '\<async\s\+def\>' nextgroup=pythonFunction skipwhite
   syn match   pythonStatement   '\<async\s\+with\>'
   syn match   pythonStatement   '\<async\s\+for\>'
+  syn keyword pythonAsync       async await
   syn cluster pythonExpression contains=pythonStatement,pythonRepeat,pythonConditional,pythonOperator,pythonNumber,pythonHexNumber,pythonOctNumber,pythonBinNumber,pythonFloat,pythonString,pythonBytes,pythonBoolean,pythonNone,pythonSingleton,pythonBuiltinObj,pythonBuiltinFunc,pythonBuiltinType,pythonClassVar
 endif
 
@@ -426,6 +427,7 @@ if v:version >= 508 || !exists('did_python_syn_inits')
   HiLink pythonRepeat           Repeat
   HiLink pythonException        Exception
   HiLink pythonOperator         Operator
+  HiLink pythonAsync            Statement
 
   HiLink pythonDecorator        Define
   HiLink pythonDottedName       Function
